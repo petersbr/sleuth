@@ -15,7 +15,8 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+library('future')
+plan(multiprocess)
 #' Basic row filter
 #'
 #' A basic filter to be used.
@@ -176,7 +177,7 @@ sleuth_prep <- function(
   sample_to_covariates$path <- NULL
   nsamp <- 0
   # append sample column to data
-  kal_list <- lapply(seq_along(kal_dirs),
+  kal_list <- future_lapply(seq_along(kal_dirs),
     function(i) {
       nsamp <- dot(nsamp)
       path <- kal_dirs[i]
@@ -292,7 +293,7 @@ sleuth_prep <- function(
     obs_norm <- dplyr::bind_cols(obs_norm, dplyr::select(obs_raw, eff_len, len))
 
     msg("normalizing bootstrap samples")
-    ret$kal <- lapply(seq_along(ret$kal), function(i) {
+    ret$kal <- future_lapply(seq_along(ret$kal), function(i) {
       normalize_bootstrap(ret$kal[[i]],
         tpm_size_factor = tpm_sf[i],
         est_counts_size_factor = est_counts_sf[i])
@@ -480,7 +481,7 @@ sleuth_summarize_bootstrap <- function(obj, force = FALSE, verbose = FALSE) {
 }
 
 sleuth_summarize_bootstrap_col <- function(obj, col, transform = identity) {
-  res <- lapply(seq_along(obj$kal), function(i) {
+  res <- future_lapply(seq_along(obj$kal), function(i) {
       cur_samp <- obj$sample_to_covariates$sample[i]
 
       dplyr::mutate(summarize_bootstrap(obj$kal[[i]], col, transform),
