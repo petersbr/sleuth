@@ -22,3 +22,4 @@ NULL
 #' @importFrom data.table fread
 #' @importFrom lazyeval interp lazy
 NULL
+#' @import future
