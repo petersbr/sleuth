@@ -1,8 +1,10 @@
-# sleuth: inspect your RNA-Seq
+# sleuth
 
-Investigate RNA-Seq transcript abundance from
-[kallisto](https://github.com/pimentel/kallisto) and perform differential expression
-analysis.
+__sleuth__ is a program for differential analysis of RNA-Seq data. It makes use of quantification uncertainty estimates obtained via [kallisto](https://github.com/pimentel/kallisto) for accurate differential analysis of isoforms or genes, allows testing in the context of experiments with complex designs, and supports interactive exploratory data analysis via __sleuth live__. The sleuth methods are described in
+
+H Pimentel,	NL Bray,	S Puente,	P Melsted	and Lior Pachter, [Differential analysis of RNA-seq incorporating quantification uncertainty](http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4324.html), Nature Methods (2017), advanced access.
+
+Scripts reproducing all the results of the paper are available [here](https://github.com/pachterlab/sleuth_paper_analysis).
 
 # Installation
 
@@ -59,13 +61,12 @@ any other function in R:
 
 # Further help
 
-Please visit the [sleuth website](https://pachterlab.github.io/sleuth) for
-ways to get help. In particular, you might find the [kallisto-sleuth
-users](https://groups.google.com/forum/#!forum/kallisto-sleuth-users) Google
-group helpful.
+Please visit the [sleuth website](https://pachterlab.github.io/sleuth) for ways to get help.
+We have several new [walk-throughs](https://pachterlab.github.io/sleuth/walkthroughs) at the main sleuth website.
+In particular, you might find the [kallisto-sleuth users](https://groups.google.com/forum/#!forum/kallisto-sleuth-users) Google group helpful.
 
 Please post bug reports [on GitHub](https://github.com/pachterlab/sleuth/issues).
 
 # Copyright
 
-Copyright (C) 2015  Harold Pimentel, Nicolas Bray, Pall Melsted, Lior Pachter
+Copyright (C) 2017 Harold Pimentel, Nicolas Bray, Pall Melsted, Lior Pachter
