@@ -92,6 +92,7 @@ plot_pca <- function(obj,
   color_by = NULL,
   point_size = 3,
   point_alpha = 0.8,
+  topn = 500,
   ...) {
   stopifnot( is(obj, 'sleuth') )
 
@@ -105,11 +106,15 @@ plot_pca <- function(obj,
     mat <- spread_abundance_by(obj$obs_norm, units,
       obj$sample_to_covariates$sample)
   }
+  mat  <- log2( mat + 0.5 )         # BPB
+  vars <- apply( mat, 1, var )      # JVH
+  varsorder <- order( vars, decreasing=TRUE ) # JVH
+  mat  <- mat[ varsorder < topn,  ] # JVH
 
-  pca_res <- prcomp(t(mat))
-  pcs <- as_df(pca_res$x[, c(pc_x, pc_y)])
+  pca_res <- prcomp( t( mat ) )
+  pcs <- as_df( pca_res$x[, c(pc_x, pc_y)] )
   pcs$sample <- rownames(pcs)
-  rownames(pcs) <- NULL
+  rownames( pcs ) <- NULL
 
   pc_x <- paste0('PC', pc_x)
   pc_y <- paste0('PC', pc_y)
