@@ -81,6 +81,7 @@ plot_mean_var <- function(obj,
 #' @param units either 'est_counts' ('scaled_reads_per_base' for gene_mode) or 'tpm'
 #' @param text_labels if TRUE, use text labels instead of points
 #' @param color_by a variable to color by. if NA, then will leave all as 'black'
+#' @param topn number of highest ranked variables to include in the calculation, default:500
 #' @return a gpplot object
 #' @export
 plot_pca <- function(obj,
